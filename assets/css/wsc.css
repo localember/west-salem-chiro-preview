@@ -242,7 +242,6 @@ iframe, video, table { max-width: 100%; }
 .wsc-article { max-width: 760px; }
 .wsc-article .apx-prose img { border-radius: 12px; }
 
-.wsc-paperwork li { margin: 0 0 10px; }
 
 .apx-citation, .apx-costbox { background: #fff; border-radius: 14px; padding: 18px; margin: 20px 0; box-shadow: 0 6px 18px rgba(18,40,81,0.05); }
 
@@ -371,4 +370,119 @@ iframe, video, table { max-width: 100%; }
 .apx-trust .apx-trust__chip svg { display: none; }
 @media (max-width: 480px) {
   .apx-trust__item { flex: 1 1 100%; max-width: 100%; }
+}
+
+/* ==========================================================================
+   Contrast pass (2026-11-11). The Apex components below were drawn for a dark
+   ground. On the light background they need dark-on-light colors. Targets
+   WCAG AA: 4.5:1 for text, 3:1 for button edges and focus rings.
+   ========================================================================== */
+:root {
+  --wsc-muted: #4a5568;        /* secondary text, 7.5:1 on white */
+  --wsc-accent-teal: #0f766e;  /* labels, 5.2:1 on #f8fafc */
+  --wsc-focus: #2f4d82;
+}
+
+/* Eyebrow pills (hero badge, section badges) */
+.apx-pill {
+  background-color: #fff;
+  border: 1px solid #c9d4e5;
+}
+.apx-pill__text,
+.wsc-hero .apx-pill .apx-pill__text { color: var(--apx-brand); }
+.apx-pill__dot { background-color: #0f766e; box-shadow: none; }
+
+/* Lead paragraphs under section headings and in CTA bands */
+.apx-lead,
+.apx-lead p,
+.wsc-hero .apx-lead,
+.wsc-hero .apx-lead p { color: var(--wsc-muted); }
+.apx-secthead__sub, .apx-cshead__sub { color: var(--wsc-muted); }
+.apx-tagline { color: var(--apx-brand); }
+
+/* Labels */
+.apx-answer__label { color: var(--wsc-accent-teal); }
+
+/* Secondary (ghost) buttons: brand outline on light, solid brand on hover */
+.apx-btn--ghost,
+.wsc-hero .apx-btn--ghost,
+.wsc-hero .apx-btn--phone {
+  background-color: #fff;
+  border: 2px solid var(--apx-brand);
+  color: var(--apx-brand);
+}
+.apx-btn--ghost:hover,
+.apx-btn--ghost:focus-visible,
+.wsc-hero .apx-btn--ghost:hover,
+.wsc-hero .apx-btn--ghost:focus-visible {
+  background-color: var(--apx-brand);
+  border-color: var(--apx-brand);
+  color: #fff;
+}
+.apx-btn:focus-visible,
+.apx-footer a:focus-visible,
+.apx-nav__link:focus-visible {
+  outline: 3px solid var(--wsc-focus);
+  outline-offset: 2px;
+}
+
+/* Footer: uniform columns, readable links */
+.apx-footer.apx-band--dark { background: #1a2740 !important; color: #d5deeb; }
+.apx-footer .apx-band__inner { padding-block: 64px 40px; }
+.apx-footer .apx-footer__grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 40px !important;
+  align-items: start;
+}
+.apx-footer .apx-footer__grid > div { min-width: 0; }
+.apx-footer .apx-footer__grid > div > a:first-child { display: inline-block; }
+.apx-footer .apx-footer__grid > div > a:first-child img { display: block; width: 180px; height: auto; }
+.apx-footer h3 {
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0 0 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+.apx-footer p { color: #d5deeb; font-size: 0.95rem; line-height: 1.7; margin: 0 0 12px; }
+.apx-footer a { color: #fff; text-decoration: none; text-underline-offset: 3px; }
+.apx-footer a:hover { color: #b9cdee; text-decoration: underline; }
+.apx-footer .wsc-hours li {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 7px 0;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+.apx-footer .wsc-hours span { color: #d5deeb; }
+.apx-footer .wsc-hours span:first-child { color: #fff; font-weight: 600; flex: 0 0 auto; }
+.apx-footer .wsc-hours span:last-child { text-align: right; }
+.apx-footer .apx-footer__grid ul[style] {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px 20px !important;
+}
+.apx-footer .apx-footer__grid ul[style] li { font-size: 0.92rem; line-height: 1.45; }
+.apx-footer .apx-footer__grid + p {
+  margin-top: 40px !important;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  color: #d5deeb;
+  line-height: 1.9;
+}
+.apx-footer .apx-footer__grid + p + p { opacity: 1 !important; color: #c3cee0; }
+
+@media (max-width: 980px) {
+  .apx-footer .apx-footer__grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  .apx-footer .apx-footer__grid > div:last-child { grid-column: 1 / -1; }
+  .apx-footer .apx-footer__grid ul[style] { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .apx-footer .apx-band__inner { padding-block: 48px 32px; }
+  .apx-footer .apx-footer__grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .apx-footer .apx-footer__grid ul[style] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .apx-footer .wsc-hours li { flex-direction: row; justify-content: space-between; gap: 12px; }
 }
