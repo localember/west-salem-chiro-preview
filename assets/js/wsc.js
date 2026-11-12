@@ -2,7 +2,7 @@
   // Dropdown / mobile submenu
   document.querySelectorAll('.apx-nav__item--has-sub > .apx-nav__link').forEach(function (link) {
     link.addEventListener('click', function (e) {
-      if (window.innerWidth > 980) return;
+      if (window.innerWidth > 1119) return;
       e.preventDefault();
       var item = link.parentElement;
       var open = item.classList.contains('is-open');

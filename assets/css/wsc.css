@@ -449,14 +449,15 @@ iframe, video, table { max-width: 100%; }
 .apx-footer a { color: #fff; text-decoration: none; text-underline-offset: 3px; }
 .apx-footer a:hover { color: #b9cdee; text-decoration: underline; }
 .apx-footer .wsc-hours li {
+  align-items: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   padding: 7px 0;
   font-size: 0.9rem;
   line-height: 1.45;
 }
 .apx-footer .wsc-hours span { color: #d5deeb; }
-.apx-footer .wsc-hours span:first-child { color: #fff; font-weight: 600; flex: 0 0 auto; }
-.apx-footer .wsc-hours span:last-child { text-align: right; }
+.apx-footer .wsc-hours span:first-child { color: #fff; font-weight: 600; flex: 0 0 auto; white-space: nowrap; }
+.apx-footer .wsc-hours span:last-child { text-align: right; margin-left: auto; }
 .apx-footer .apx-footer__grid ul[style] {
   display: grid !important;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -558,6 +559,37 @@ iframe, video, table { max-width: 100%; }
 @media (max-width: 640px) {
   .wsc-postgrid { grid-template-columns: 1fr; }
   .wsc-blog__empty { padding: 28px 20px; }
+}
+
+/* The hamburger takes over at 1119px (apex.css). Below that, keep submenus
+   inside the open panel. A desktop flyout here is wider than the bar and a
+   click was leaving the page instead of opening the list. */
+@media (max-width: 1119px) {
+  .apx-nav__drop,
+  .apx-nav__drop--wide {
+    position: static;
+    box-shadow: none;
+    border: 0;
+    padding: 0 0 8px 12px;
+    min-width: 0 !important;
+    max-width: none;
+    width: auto;
+    grid-template-columns: 1fr;
+  }
+  .apx-nav__item--has-sub:hover > .apx-nav__drop,
+  .apx-nav__item--has-sub:focus-within > .apx-nav__drop,
+  .apx-nav__item--has-sub:hover > .apx-nav__drop--wide,
+  .apx-nav__item--has-sub:focus-within > .apx-nav__drop--wide {
+    display: none;
+  }
+  .apx-nav__item--has-sub.is-open > .apx-nav__drop,
+  .apx-nav__item--has-sub.is-open > .apx-nav__drop--wide,
+  .apx-nav__item--has-sub.is-open:hover > .apx-nav__drop,
+  .apx-nav__item--has-sub.is-open:hover > .apx-nav__drop--wide,
+  .apx-nav__item--has-sub.is-open:focus-within > .apx-nav__drop,
+  .apx-nav__item--has-sub.is-open:focus-within > .apx-nav__drop--wide {
+    display: grid;
+  }
 }
 
 /* ==========================================================================
