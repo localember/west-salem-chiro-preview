@@ -235,12 +235,6 @@ iframe, video, table { max-width: 100%; }
 
 .wsc-map iframe { width: 100%; height: 320px; border: 0; border-radius: 16px; }
 
-.wsc-blog-list { display: grid; gap: 16px; }
-.wsc-blog-item { background: #fff; border-radius: 14px; padding: 18px 20px; text-decoration: none; color: inherit; box-shadow: 0 6px 18px rgba(18,40,81,0.05); }
-.wsc-blog-item h2 { margin: 0 0 6px; font-size: 1.15rem; }
-.wsc-blog-item time { font-size: 0.85rem; color: #4a5568; }
-.wsc-article { max-width: 760px; }
-.wsc-article .apx-prose img { border-radius: 12px; }
 
 
 .apx-citation, .apx-costbox { background: #fff; border-radius: 14px; padding: 18px; margin: 20px 0; box-shadow: 0 6px 18px rgba(18,40,81,0.05); }
@@ -485,4 +479,80 @@ iframe, video, table { max-width: 100%; }
   .apx-footer .apx-footer__grid { grid-template-columns: 1fr !important; gap: 32px !important; }
   .apx-footer .apx-footer__grid ul[style] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .apx-footer .wsc-hours li { flex-direction: row; justify-content: space-between; gap: 12px; }
+}
+
+/* ==========================================================================
+   Header (2026-11-11). The light theme has no transparent header state, so the
+   dark logo shows in every scroll state, including after scrolling back to top.
+   ========================================================================== */
+.apx-header .apx-header__logo--dark { opacity: 1 !important; filter: none !important; }
+.apx-header .apx-header__inner { min-height: 60px; }
+
+/* ==========================================================================
+   Spacing pass (2026-11-11). Clear space above content headings, a small
+   consistent gap below them, and even rhythm for lists and repeated blocks.
+   ========================================================================== */
+.apx-prose h2,
+.apx-prose .apx-prose__h2,
+.wsc-legal h2 {
+  margin: 2.75rem 0 0.75rem;
+}
+.apx-prose h3,
+.wsc-legal h3 {
+  margin: 1.875rem 0 0.5rem;
+  font-size: clamp(1.2rem, 1.05rem + 0.5vw, 1.45rem);
+  line-height: 1.3;
+}
+.apx-prose h2 + h3,
+.wsc-legal h2 + h3 { margin-top: 1.25rem; }
+.apx-prose > p,
+.apx-prose > div > p:not([class]) { margin: 0 0 1rem; }
+.apx-prose > h3 + p { color: var(--wsc-muted); font-size: 17px; line-height: 1.7; }
+/* No doubled space when a heading opens its band. */
+.apx-band__inner > .apx-prose:first-child > :is(h2, h3):first-child,
+.apx-band__inner > :is(h2, h3):first-child,
+.apx-costbox > :is(h2, h3):first-child,
+.apx-answer > :is(h2, h3):first-child { margin-top: 0; }
+/* Consecutive prose blocks keep the same rhythm as one block. */
+.apx-prose + .apx-prose__p,
+.apx-prose__p + .apx-prose { margin-top: 0; }
+.apx-prose__list li + li,
+.apx-prose ul:not([class]) li + li,
+.wsc-legal li + li { margin-top: 0.4rem; }
+.apx-costbox { margin-top: 0.75rem; }
+/* Section headings that sit directly in a band (FAQ, galleries, lists). */
+.apx-band__inner > h2:not(.apx-dual) { margin-bottom: 1.5rem; }
+.apx-band__inner > h2:not(.apx-dual) + p { margin-top: -0.75rem; margin-bottom: 1.25rem; }
+
+.apx-band__inner > * + h2:not(.apx-dual) { margin-top: 2.5rem; }
+.apx-band__inner > div > h2:not(.apx-dual) { margin-bottom: 0.75rem; }
+
+/* Centered CTA bands: the line under the heading centers with it. */
+.apx-band__inner[style*="text-align:center"] > .apx-lead {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+/* Blog index in our own pattern: card grid ready for posts, empty state until then. */
+.wsc-postgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.wsc-postgrid:empty { display: none; }
+.wsc-postcard time { display: block; font-size: 0.85rem; color: var(--wsc-muted); margin-bottom: 6px; }
+.wsc-blog__empty {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+  background: #fff;
+  border: 1px solid #dde4ef;
+  border-radius: 18px;
+  padding: 40px 32px;
+  box-shadow: 0 8px 24px rgba(18, 40, 81, 0.06);
+}
+.wsc-blog__empty h2 { margin: 0 0 0.75rem; font-size: clamp(1.5rem, 1.3rem + 0.8vw, 2rem); }
+.wsc-blog__empty p { color: var(--wsc-muted); margin: 0; line-height: 1.7; }
+.wsc-blog .apx-band__inner { align-items: stretch; }
+@media (max-width: 980px) { .wsc-postgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) {
+  .wsc-postgrid { grid-template-columns: 1fr; }
+  .wsc-blog__empty { padding: 28px 20px; }
 }

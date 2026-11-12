@@ -16,7 +16,7 @@
     var should = window.scrollY > TRIGGER;
     if (should === on) return;      // never touch the DOM on a scroll that changed nothing
     on = should;
-    header.classList.toggle('apx-header--scrolled', on);
+    header.classList.add('apx-header--scrolled'); // light theme: the header stays solid white with the dark logo in every scroll state
   }
 
   update();
